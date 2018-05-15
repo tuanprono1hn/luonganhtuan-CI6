@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
@@ -76,8 +77,8 @@ public class Main {
 //            System.out.println(i);
 //        } while (i < 5);
 //        int[] array = new int[10];
-////        int[] list = {1,3,4,-4,1,0};
-////
+//        int[] list = {1,3,4,-4,1,0};
+//
         //        List<String> list = new ArrayList<>();
         //        list.add("a");
         //        list.add("b");
@@ -94,14 +95,14 @@ public class Main {
 //        array[1] = 2;
 //        for (int i = 0; i < array.length; i++) {
 //            array[i] = i;
-////            System.out.println(array[i]);
+//            System.out.println(array[i]);
 //        }
 //        for (int element: array) {
 //            System.out.println(element);
 //        }
         //        Scanner scanner = new Scanner(System.in);
-        ////        int a = scanner.nextInt();
-        ////        double b = scanner.nextDouble();
+        //        int a = scanner.nextInt();
+        //        double b = scanner.nextDouble();
         //        String a = scanner.next();
         //        System.out.println(a);
         //        String[][] array = new String[4][4];
@@ -109,34 +110,103 @@ public class Main {
         //                {"*","*"},
         //                {"*","*"}
         //        };
-        String[][] map = new String[4][4];
-        for (int i = 0; i < 4; i++) {
-            for (int k = 0; k < 4; k++) {
-                map[i][k] = "*";
+//        String[][] map = new String[4][4];
+//        for (int i = 0; i < 4; i++) {
+//            for (int k = 0; k < 4; k++) {
+//                map[i][k] = "* ";
+//            }
+//        }
+//        for (int i = 0; i < 4; i++) {
+//            System.out.println();
+//            for (int k = 0; k < 4; k++){
+//                System.out.print(map[i][k] + "");
+//            }
+//        }
+//        int x = 0;
+//        int y = 2;
+//        int dx = 1;
+//        int dy = 1;
+//        map[x][y] = "P";
+//        Scanner scanner = new Scanner(System.in);
+//        String m = scanner.next();
+//        switch (m.equalsIgnoreCase()) {
+//            case "a":
+//                x -= dx;
+//            case "s":
+//                y -= dy;
+//            case "d":
+//                x += dx;
+//            case "w":
+//                y += dy;
+//        }
+        int map_sokoban = 4;
+        int[] player = {2, 1};
+        int[] enemy1 = new int[2];
+        int[] enemy2 = new int[2];
+        boolean is_player;
+
+        while(true) {
+            for (int y = 0; y < map_sokoban; y++) {
+                for (int x = 0; x < map_sokoban; x++) {
+                    is_player = false;
+                    if (x == player[0] && y == player[1]) {
+                        System.out.print("P ");
+                        is_player = true;
+                    }
+                    if (!is_player) {
+                        System.out.print("* ");
+                    }
+                }
+                System.out.println();
             }
-        }
-        for (int i = 0; i < 4; i++) {
-            System.out.println();
-            for (int k = 0; k < 4; k++){
-                System.out.print(map[i][k] + "");
+            Scanner scanner = new Scanner(System.in);
+            String move = scanner.next().toLowerCase();
+            int dx = 0;
+            int dy = 0;
+            switch (move){
+                case "a":
+                    dx = -1;
+                    break;
+                case "s":
+                    dy = 1;
+                    break;
+                case "d":
+                    dx = 1;
+                    break;
+                case "w":
+                    dy = -1;
+                    break;
+                default:
+                    System.out.println("Enter a,s,d,w: ");
+                    break;
             }
-        }
-        int x = 0;
-        int y = 2;
-        int dx = 1;
-        int dy = 1;
-        map[x][y] = "P";
-        Scanner scanner = new Scanner(System.in);
-        String m = scanner.next();
-        switch (m.equalsIgnoreCase()) {
-            case "a":
-                x -= dx;
-            case "s":
-                y -= dy;
-            case "d":
-                x += dx;
-            case "w":
-                y += dy;
+//            EX_1:
+//            if (0 > player[0] + dx || player[0] + dx >= map_sokoban || 0 > player[1] + dy || player[1] + dy >= map_sokoban) {
+//                System.out.println("Can't move!!");
+//            }
+//            else {
+//                player[0] += dx;
+//                player[1] += dy;
+//            }
+//            EX2:
+            if (player[0] + dx >= map_sokoban) {
+                player[0] = 0;
+            }
+            else if (player[0] + dx < 0) {
+                player[0] = map_sokoban -1;
+            }
+            else if (player[1] + dy >= map_sokoban) {
+                player[1] = 0;
+            }
+            else if (player[1] + dy <0) {
+                player[1] = map_sokoban -1;
+            }
+            else {
+                player[0] += dx;
+                player[1] += dy;
+            }
+//            EX3:
+
         }
     }
 }
