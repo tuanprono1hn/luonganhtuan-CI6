@@ -141,10 +141,25 @@ public class Main {
 //        }
         int map_sokoban = 4;
         int[] player = {2, 1};
-        int[] enemy1 = new int[2];
-        int[] enemy2 = new int[2];
-        boolean is_player;
+        int[] enemy_doc = new int[2];
+        int[] enemy_ngang = new int[2];
+        boolean is_player, is_eneny;
 
+        Random random = new Random();
+        while (true) {
+            enemy_doc[0] = random.nextInt(map_sokoban);
+            enemy_doc[1] = random.nextInt(map_sokoban);
+            if ((enemy_doc[0] != player[0]) && (enemy_doc[1] != player[1])) {
+                break;
+            }
+        }
+        while (true) {
+            enemy_ngang[0] = random.nextInt(map_sokoban);
+            enemy_ngang[1] = random.nextInt(map_sokoban);
+            if ((enemy_ngang[0] != player[0]) && (enemy_ngang[1] != player[1]) && (enemy_ngang[0] != enemy_doc[0]) && (enemy_ngang[1] != enemy_doc[1])) {
+                break;
+            }
+        }
         while(true) {
             for (int y = 0; y < map_sokoban; y++) {
                 for (int x = 0; x < map_sokoban; x++) {
@@ -153,7 +168,12 @@ public class Main {
                         System.out.print("P ");
                         is_player = true;
                     }
-                    if (!is_player) {
+                    is_eneny = false;
+                    if ((x == enemy_doc[0] && y == enemy_doc[1]) || (x == enemy_ngang[0] && y == enemy_ngang[1])) {
+                        System.out.print("E ");
+                        is_eneny = true;
+                    }
+                    if ((!is_player) && (!is_eneny)) {
                         System.out.print("* ");
                     }
                 }
@@ -163,6 +183,7 @@ public class Main {
             String move = scanner.next().toLowerCase();
             int dx = 0;
             int dy = 0;
+            int ene_move = 1;
             switch (move){
                 case "a":
                     dx = -1;
@@ -206,6 +227,27 @@ public class Main {
                 player[1] += dy;
             }
 //            EX3:
+//            else if (enemy_ngang[0] + ene_move >= map_sokoban) {
+//                enemy_ngang[0] = 0;
+//            }
+//            else if (enemy_ngang[0] + ene_move < 0) {
+//                enemy_ngang[0] = map_sokoban -1;
+//            }
+//            else if (enemy_doc[1] + ene_move >= map_sokoban) {
+//                enemy_doc[1] = 0;
+//            }
+//            else if (enemy_doc[1] + ene_move <0) {
+//                enemy_doc[1] = map_sokoban -1;
+//            }
+//            else {
+//                player[0] += dx;
+//                player[1] += dy;
+//                enemy_ngang[0] += ene_move;
+//                enemy_doc[1] += ene_move;
+//                if (((player[0] == enemy_doc[0]) && (player[1] == enemy_doc[1])) || ((player[0] == enemy_ngang[0]) && (player[1] == enemy_ngang[1]))) {
+//                    System.out.println("You're Dead");
+//                }
+//            }
 
         }
     }
