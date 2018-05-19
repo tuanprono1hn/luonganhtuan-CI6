@@ -29,18 +29,22 @@ public class B1C {
 //                new Point(3, 2);
 //                new Point(3, 3);
 //        );
+//        tao mot list tat ca cac toa do tren ban do
         ArrayList<Point> position = new ArrayList<>();
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[i].length; j++) {
                 position.add(new Point(j,i));
             }
         }
+//        Player cos toa do (2,2) nen xoa toa do (2,2) trong list
         position.remove(10);
 
         Random random = new Random();
+
         int result = add(1,2)
         int x = 2;
         int y = 2;
+
         Point point = position.remove(random.nextInt(position.size()));
         int enemy1x = point.x;
         int enemy1y = point.y;
@@ -55,19 +59,24 @@ public class B1C {
 
         map[enemy1y][enemy1x] = "N";
         map[enemy2y][enemy2x] = "D";
-        map[y][x] = "G";
+        map[gifty][giftx] = "G";
 
         while (true) {
+
+            printMap(map);
+
+            if (giftx == x && gifty == y) {
+                System.out.println("win");
+                break;
+            }
+
             for (int i = 0; i < map.length; i++) {
                 for (int j = 0; j < map[i].length; j++) {
                     System.out.print(map[i][j] + " ");
                 }
                 System.out.println();
             }
-            if (giftx == x && gifty == y) {
-                System.out.println("win");
-                break;
-            }
+
             System.out.println("Nhap ban phim: ");
             Scanner scanner = new Scanner(System.in);
             String key = scanner.next();
