@@ -5,6 +5,7 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println("ehehee");
 //        System.out.println("Hello, World");
 //        <kieu cua bien> tenbien
 //        byte //-128 127
